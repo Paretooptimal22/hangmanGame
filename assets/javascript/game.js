@@ -29,12 +29,16 @@ const displayDog = function () {
 
 // get player input
 document.onkeyup = function (event) {
-  if (event.keyCode >= 65 && event.keyCode <= 90) {
-    if (dog.includes(event.key)) {
-      lettersGuessed.push(event.key)
-      document.getElementById(`letters`).textContent = lettersGuessed.join(`, `)
-      displayDog()
+  if (event.keyCode >= 65 && event.keyCode <= 90) 
+  {
+    if (lettersGuessed.indexOf(event.key) === -1) {
+      if (dog.includes(event.key)) {
+        lettersGuessed.push(event.key)
+        document.getElementById(`letters`).textContent = lettersGuessed.join(`, `)
+        displayDog()
+      }
     }
+    
   }
 }
 
