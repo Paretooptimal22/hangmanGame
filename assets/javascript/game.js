@@ -1,5 +1,5 @@
 // dog array
-const dogs = [`newfoundland`, `xoloitzcuintli`, `pug`, `bulldog`, `chihuahua`, `pitbull`, `germanshephard`, `labradorretriever`, `chowchow`, 'bernese mountain dog', `beagle`, `poodle`, `frenchbulldog`, `husky`, `doberman`, `golden retriever`, `greatdane`, `pomeranian`, `corgi`, `maltese`, `bostonterrier`, `rottweiler`, `yorkshireterrier`, `bloodhound`, `saintbernard`, `akita`, `shiba inu`, `mastiff`, `dachshund`]
+const dogs = [`newfoundland`, `xoloitzcuintli`, `pug`, `bulldog`, `chihuahua`, `pitbull`, `labrador`, `chowchow`, `beagle`, `poodle`, `frenchie`, `husky`, `doberman`, `pomeranian`, `corgi`, `maltese`, `rottweiler`, `bloodhound`, `akita`, `mastiff`, `dachshund`]
 
 // select random dog
 const getRandDog = function () {
@@ -17,13 +17,19 @@ let dog = getRandDog()
 // display dog
 const displayDog = function () {  
   let dogStr = ``
+  let winStatus = true
   dog.split(``).forEach(function (letter) {
     if (lettersGuessed.indexOf(letter) !== -1) {
       dogStr += `${letter} `
     } else {
       dogStr += `_ `
+      winStatus = false
     }
   })
+  if (winStatus) {
+    alert(`You Won!`)
+  }
+
   document.getElementById(`dog`).textContent = dogStr
 }
 
@@ -32,10 +38,17 @@ document.onkeyup = function (event) {
   if (event.keyCode >= 65 && event.keyCode <= 90) 
   {
     if (lettersGuessed.indexOf(event.key) === -1) {
+      lettersGuessed.push(event.key)
+      document.getElementById(`letters`).textContent = lettersGuessed.join(`, `)
       if (dog.includes(event.key)) {
-        lettersGuessed.push(event.key)
-        document.getElementById(`letters`).textContent = lettersGuessed.join(`, `)
         displayDog()
+      } else {
+        guesses--
+        if (guesses <= 0) {
+          alert(`You Lost!`)
+        }
+
+
       }
     }
     
