@@ -1,5 +1,5 @@
 // dog array
-const dogs = [`newfoundland`, `xoloitzcuintli`, `pug`, `bulldog`, `chihuahua`, `pitbull`, `german shephard`, `labrador retriever`, `chow chow`, 'bernese mountain dog', `beagle`, `poodle`, `french bulldog`, `husky`, `doberman`, `golden retriever`, `great dane`, `pomeranian`, `corgi`, `maltese`, `boston terrier`, `rottweiler`, `yorkshire terrier`, `bloodhound`, `saint bernard`, `akita`, `shiba inu`, `mastiff`, `dachshund`]
+const dogs = [`newfoundland`, `xoloitzcuintli`, `pug`, `bulldog`, `chihuahua`, `pitbull`, `germanshephard`, `labradorretriever`, `chowchow`, 'bernese mountain dog', `beagle`, `poodle`, `frenchbulldog`, `husky`, `doberman`, `golden retriever`, `greatdane`, `pomeranian`, `corgi`, `maltese`, `bostonterrier`, `rottweiler`, `yorkshireterrier`, `bloodhound`, `saintbernard`, `akita`, `shiba inu`, `mastiff`, `dachshund`]
 
 // select random dog
 const getRandDog = function () {
@@ -9,17 +9,17 @@ const getRandDog = function () {
 // variables
 let wins = 0
 let losses = 0
-let guesses = 3
+let guesses = 6
 const lettersGuessed = []
 let dog = getRandDog()
 
 
 // display dog
-const displayDog = function (chosen) {  
+const displayDog = function () {  
   let dogStr = ``
   dog.split(``).forEach(function (letter) {
-    if (letter === chosen) {
-      dogStr += `${chosen} `
+    if (lettersGuessed.indexOf(letter) !== -1) {
+      dogStr += `${letter} `
     } else {
       dogStr += `_ `
     }
@@ -31,7 +31,10 @@ const displayDog = function (chosen) {
 document.onkeyup = function (event) {
   if (event.keyCode >= 65 && event.keyCode <= 90) {
     if (dog.includes(event.key)) {
-      displayDog(event.key)
+      lettersGuessed.push(event.key)
+      document.getElementById(`letters`).textContent = lettersGuessed.join(`, `)
+      displayDog()
     }
   }
 }
+
