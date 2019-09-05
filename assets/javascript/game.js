@@ -5,6 +5,11 @@ let losses = 0
 let guesses = 3
 const lettersGuessed = []
 
+
+// select random word and display word
+const getRandWord = function () {
+  return dogs[Math.floor(Math.random() * dogs.length)]
+}
 const displayWord = function () {
-  
+  const dog = getRandWord()
 }
