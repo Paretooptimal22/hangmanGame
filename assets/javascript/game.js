@@ -28,7 +28,9 @@ const reset = function () {
 // display dog
 const displayDog = function () {  
   let dogStr = ``
+  // toggle tracks if user won
   let winStatus = true
+  // loop over word and build string
   dog.split(``).forEach(function (letter) {
     if (lettersGuessed.indexOf(letter) !== -1) {
       dogStr += `${letter} `
