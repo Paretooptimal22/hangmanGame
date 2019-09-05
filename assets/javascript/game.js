@@ -9,7 +9,7 @@ const getRandDog = function () {
 // variables
 let wins = 0
 let losses = 0
-let guesses = 6
+let guesses = 10
 const lettersGuessed = []
 let dog = getRandDog()
 
@@ -28,6 +28,8 @@ const displayDog = function () {
   })
   if (winStatus) {
     alert(`You Won!`)
+    wins++
+    document.getElementById(`wins`).textContent = wins
   }
 
   document.getElementById(`dog`).textContent = dogStr
@@ -44,8 +46,11 @@ document.onkeyup = function (event) {
         displayDog()
       } else {
         guesses--
+        document.getElementById(`guesses`).textContent = guesses
         if (guesses <= 0) {
           alert(`You Lost!`)
+          losses++
+          document.getElementById(`losses`).textContent = losses
         }
 
 
@@ -55,3 +60,4 @@ document.onkeyup = function (event) {
   }
 }
 
+displayDog()
