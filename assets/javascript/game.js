@@ -6,13 +6,24 @@ const getRandDog = function () {
   return dogs[Math.floor(Math.random() * dogs.length)].toLowerCase()
 }
 
-// variables
+// starting values
 let wins = 0
 let losses = 0
 let guesses = 10
-const lettersGuessed = []
+let lettersGuessed = []
 let dog = getRandDog()
 
+// reset trackers
+const reset = function () {
+  dog = getRandDog()
+  lettersGuessed = []
+  guesses = 10
+  displayDog()
+  document.getElementById(`guesses`).textContent = guesses
+  document.getElementById(`wins`).textContent = wins
+  document.getElementById(`losses`).textContent = losses
+  document.getElementById(`letters`).textContent = lettersGuessed.join(`, `)
+}
 
 // display dog
 const displayDog = function () {  
@@ -26,13 +37,17 @@ const displayDog = function () {
       winStatus = false
     }
   })
-  if (winStatus) {
-    alert(`You Won!`)
-    wins++
-    document.getElementById(`wins`).textContent = wins
-  }
 
   document.getElementById(`dog`).textContent = dogStr
+
+  // winning scenario
+  if (winStatus) {
+    alert(`You Won! The Word is ${dog}`)
+    wins++
+    reset()
+  }
+
+  
 }
 
 // get player input
@@ -47,10 +62,11 @@ document.onkeyup = function (event) {
       } else {
         guesses--
         document.getElementById(`guesses`).textContent = guesses
+        // losing scenario
         if (guesses <= 0) {
-          alert(`You Lost!`)
+          alert(`You Lost! The Word was ${dog}`)
           losses++
-          document.getElementById(`losses`).textContent = losses
+          reset()
         }
 
 
