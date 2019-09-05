@@ -7,9 +7,18 @@ const lettersGuessed = []
 
 
 // select random word and display word
-const getRandWord = function () {
+const getRandDog = function () {
   return dogs[Math.floor(Math.random() * dogs.length)]
 }
-const displayWord = function () {
-  const dog = getRandWord()
+const displayDog = function () {
+  const dog = getRandDog()
+  let dogStr = ``
+  dog.split(``).forEach(function (letter) {
+    dogStr += `_ `
+  })
+  document.getElementById(`dog`).textContent = dogStr
+
+
 }
+
+displayDog()
